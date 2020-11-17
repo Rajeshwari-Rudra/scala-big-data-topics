@@ -6,8 +6,12 @@
  package edu.nwmissouri.isl
 
 import akka.actor.ActorSystem
+import akka.event.{LoggingAdapter, Logging}
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
+
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 
 import scala.concurrent.Await
 import scala.util.Failure
@@ -16,8 +20,10 @@ import scala.util.Success
 /** Custom executable app */
 object Main extends App {
 
-  val host = "0.0.0.0"
-  val port = 9000
+  // read config from src/main/resources/application.conf
+  val config = ConfigFactory.load()
+  val host = config.getString("http.interface")
+  val port = config.getInt("http.port")
 
   // creates Akka actors
   implicit val system: ActorSystem = ActorSystem(name = "topicapi")
@@ -27,6 +33,9 @@ object Main extends App {
 
   // provides default execution context
   import system.dispatcher
+
+    // get Akka logger
+  val logger = Logging(system, getClass)
 
   // used for routes
   import akka.http.scaladsl.server.Directives._
@@ -42,16 +51,22 @@ object Main extends App {
   }
 
   // bind our route to the host and port
-  val binding = Http().bindAndHandle(defaultRoute, host, port)
+  val futureBinding = Http().newServerAt(host, port).bind(defaultRoute)
 
   // listen to the binding and log results
-  binding.onComplete {
-    case Success(_) => println(s"Success! Listening on port ${port}")
-    case Failure(error) => println(s"Failed: ${error.getMessage}")
+  futureBinding.onComplete {
+    case Success(binding) => 
+      val address = binding.localAddress
+      val host =  address.getHostString
+      val port = address.getPort
+      val nl = sys.props("line.separator")
+      system.log.info(s"${nl}Server listening at http://${host}:${port}/" )
+    case Failure(error) => 
+    println(s"Failed: ${error.getMessage}")
   }
 
  // await the result of the binding
   import scala.concurrent.duration._
-  Await.result(binding, 3.seconds)
+  Await.result(futureBinding, 3.seconds)
 
 }

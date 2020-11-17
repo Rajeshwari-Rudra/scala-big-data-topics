@@ -34,7 +34,7 @@ class MainSpec extends WordSpec with Matchers with ScalatestRouteTest {
 
     "leave GET requests to other paths unhandled" in {
       // tests:
-      Get("/unknown") ~> smallRoute ~> check {
+      Get("/unknown") ~> defaultRoute ~> check {
         handled shouldBe false
       }
     }

@@ -40,6 +40,8 @@ sbt scalaVersion
 1. Add project\plugins.sbt
 1. Add src\main\scala\Main.scala
 1. Add src\test\scala\MainSpec.scala
+1. Add src\main\resources\application.conf
+1. Add src\main\resources\logback.xml
 
 Add VS Code extesions:
 
@@ -76,6 +78,7 @@ Add VS Code extesions:
 6. [Scala on Command Line](https://docs.scala-lang.org/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html)
 7. [Akka HTTP Quickstart](https://doc.akka.io/docs/akka-http/current/introduction.html#)
 8. [Scalastyle](http://www.scalastyle.org/)
+9. [Logging](https://doc.akka.io/docs/akka/2.6/typed/logging.html#logback)
 
 
 
