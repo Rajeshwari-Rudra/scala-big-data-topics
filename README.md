@@ -17,6 +17,18 @@
 1. Add a .gitignore using Scala template
 1. Clone down to your machine
 
+### Create standard Scala project
+
+1. Add build.sbt
+1. Add project\build.properties
+1. Add src\main\scala\Main.scala
+1. Add src\test\scala\MainSpec.scala
+
+Add VS Code extesion Scala Syntax (official).
+
+
+
+
 
 
 
