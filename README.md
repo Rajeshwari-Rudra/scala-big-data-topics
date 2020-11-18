@@ -1,6 +1,6 @@
 # scala-big-data-topics
 
->Manage a list of big data topics using Scala, Akka, and HTTP
+>Manage a list of big data topics using Scala, Akka, and Akka-HTTP
 
 ## Links
 
@@ -28,20 +28,21 @@ sbt scalaVersion
 ### Initialize a new repo
 
 1. In GitHub, add a new repo
-1. Add a default README.md
-1. (Optional) Add License
-1. Add a .gitignore using Scala template
-1. Clone down to your machine
+2. Add a default README.md
+3. (Optional) Add License
+4. Add a .gitignore using Scala template
+5. Clone down to your machine
 
 ### Create standard Scala project
 
 1. Add build.sbt
-1. Add project\build.properties
-1. Add project\plugins.sbt
-1. Add src\main\scala\Main.scala
-1. Add src\test\scala\MainSpec.scala
-1. Add src\main\resources\application.conf
-1. Add src\main\resources\logback.xml
+2. Add project\build.properties
+3. Add project\plugins.sbt
+4. Add src\main\scala\Main.scala
+5. Add src\test\scala\MainSpec.scala
+6. Add src\main\resources\application.conf
+7. Add src\main\resources\logback.xml
+8. Add src\test\resources\application-test.conf
 
 Add VS Code extesions:
 
@@ -50,11 +51,11 @@ Add VS Code extesions:
 
 ## Add dependencies and static analysis
 
-- Add dependencies to build.sbt
-- Add sbt.version to project/build.properties
-- In project/plugins.sbt add Scalastyle
-- Open PowerShell as Admin and run `sbt scalastyleGenerateConfig` to create config file
-- Edit scalastyle-config.xml as desired (e.g. file header)
+1. Add dependencies to build.sbt
+2. Add sbt.version to project/build.properties
+3. In project/plugins.sbt add Scalastyle
+4. Open PowerShell as Admin and run `sbt scalastyleGenerateConfig` to create config file
+5. Edit scalastyle-config.xml as desired (e.g. file header)
 
 ## Create the first route in Main.scala
 
@@ -79,6 +80,8 @@ Add VS Code extesions:
 7. [Akka HTTP Quickstart](https://doc.akka.io/docs/akka-http/current/introduction.html#)
 8. [Scalastyle](http://www.scalastyle.org/)
 9. [Logging](https://doc.akka.io/docs/akka/2.6/typed/logging.html#logback)
+10. [StackOverflow - multiple routes](https://stackoverflow.com/questions/34514372/akka-http-with-multiple-route-configurations)
+11. [Scastie formatter](https://scastie.scala-lang.org/)
 
 
 
