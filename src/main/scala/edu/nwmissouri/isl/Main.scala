@@ -4,6 +4,7 @@ package edu.nwmissouri.isl
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
 import akka.http.scaladsl.Http
+import akka.http.scaladsl.model.{ ContentTypes, HttpEntity }
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 
@@ -66,7 +67,19 @@ object Main {
 
       def defaultRoute = path("") {
         get {
-          val message = "Hello, Big Data Topics!"
+          val message = "Hello, Big Data Engineers!"
+          val html = "<h1>" +message +"</h1>" +
+          "<p><a href='/users'>Users</a></p>" +
+           "<p><a href='/topics'>Topics</a></p>"
+          complete(
+            HttpEntity( ContentTypes.`text/html(UTF-8)`, html )
+          )
+        }
+      }
+
+      def helloRoute = path("hello") {
+        get {
+          val message = "Hello, Big Data Engineers!"
           complete(message)
         }
       }
@@ -83,7 +96,7 @@ object Main {
       val tRouter = new TopicRoutes(topicRegistryActor)(context.system)
 
       object AppRouter {
-        val routes = defaultRoute ~ uRouter.userRoutes ~ tRouter.topicRoutes
+        val routes = defaultRoute ~ helloRoute ~ uRouter.userRoutes ~ tRouter.topicRoutes
       }
 
       startHttpServer(AppRouter.routes)(context.system)

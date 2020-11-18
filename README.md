@@ -4,8 +4,8 @@
 
 ## Links
 
-- [Service]()
-- [Repo](https://github.com/denisecase/scala-big-data-topics)
+- [Hosted App](https://scala-big-data-topics.herokuapp.com/)
+- [Source Repo](https://github.com/denisecase/scala-big-data-topics)
 
 ## Prerequisities
 
@@ -83,6 +83,41 @@ In this repo:
 5. Add scala.util.Properties to Main.scala
 6. Update Main port to use Heroku PORT if available, otherwise development port
 7. Open PowerShell as Admin and run `sbt compile stage`
+
+## Check Endpoints
+
+- <https://scala-big-data-topics.herokuapp.com/>
+- <https://scala-big-data-topics.herokuapp.com/users>
+- <https://scala-big-data-topics.herokuapp.com/topics>
+
+Open Git Bash and post some data:
+
+```Bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Lexie","age":3, "countryOfResidence": "Finland"}' \
+  https://scala-big-data-topics.herokuapp.com/users
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Abbie","age":19, "countryOfResidence": "Norway"}' \
+  https://scala-big-data-topics.herokuapp.com/users
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Scala","value":1000, "category": "Languages"}' \
+  https://scala-big-data-topics.herokuapp.com/topics
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Python","value":1000, "category": "Languages"}' \
+  https://scala-big-data-topics.herokuapp.com/topics
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"JavaScript","value":600, "category": "Languages"}' \
+  https://scala-big-data-topics.herokuapp.com/topics
+```
 
 ## Resources
 
