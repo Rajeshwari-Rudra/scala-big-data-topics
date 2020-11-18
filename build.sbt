@@ -1,8 +1,9 @@
 lazy val akkaHttpVersion = "10.2.1"
 lazy val akkaVersion    = "2.6.10"
 
-lazy val root = (project in file(".")).
-  settings(
+lazy val root = (project in file("."))
+  .enablePlugins(JavaAppPackaging)
+  .settings(
     inThisBuild(List(
       organization    := "edu.nwmissouri.isl",
       homepage := Some(url("https://github.com/denisecase/scala-big-data-topics")),

@@ -67,7 +67,22 @@ Add VS Code extesions:
 
 1. Complete src/test/scala/MainSpec.scala
 2. Open PowerShell as Admin and run `sbt scalastyle`
-3. Run run `sbt test`
+3. Run `sbt test`
+
+## Publish with Heroku
+
+Login to Heroku and create an app. Connect it to your GitHub repo. 
+Enable automatic deployment. 
+
+In this repo:
+
+1. Add Procfile with web path
+2. Add system.properties with java.runtime.version=1.8
+3. Update project/plugins.sbt with sbt and sbt-native-packager
+4. Update build.sbt with .enablePlugins(JavaAppPackaging)
+5. Add scala.util.Properties to Main.scala
+6. Update Main port to use Heroku PORT if available, otherwise development port
+7. Open PowerShell as Admin and run `sbt compile stage`
 
 ## Resources
 
@@ -82,6 +97,7 @@ Add VS Code extesions:
 9. [Logging](https://doc.akka.io/docs/akka/2.6/typed/logging.html#logback)
 10. [StackOverflow - multiple routes](https://stackoverflow.com/questions/34514372/akka-http-with-multiple-route-configurations)
 11. [Scastie formatter](https://scastie.scala-lang.org/)
+12. [Deploy to Heroku](https://devcenter.heroku.com/articles/deploying-scala#deploy-your-application-to-heroku)
 
 
 

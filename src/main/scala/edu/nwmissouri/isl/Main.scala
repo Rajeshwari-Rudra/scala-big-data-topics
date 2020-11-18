@@ -12,6 +12,7 @@ import com.typesafe.config.ConfigFactory
 
 import scala.util.Failure
 import scala.util.Success
+import scala.util.Properties
 
 import edu.nwmissouri.isl.topic.TopicRegistry
 import edu.nwmissouri.isl.topic.TopicRoutes
@@ -33,7 +34,8 @@ object Main {
     // read config from src/main/resources/application.conf
     val config = ConfigFactory.load()
     val host = config.getString("http.interface")
-    val port = config.getInt("http.port")
+    val devport = config.getInt("http.port")
+    val port = Properties.envOrElse("PORT", devport.toString()).toInt
 
     // bind our routes to the host and port
     val futureBinding = Http().newServerAt(host, port).bind(routes)
